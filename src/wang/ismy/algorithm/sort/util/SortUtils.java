@@ -11,6 +11,8 @@ import java.util.function.Consumer;
  */
 public class SortUtils {
 
+    private static final Random random = new Random();
+
     public static void swap(Comparable<?>[] arr, int i, int j) {
         Comparable<?> t = arr[i];
         arr[i] = arr[j];
@@ -36,11 +38,11 @@ public class SortUtils {
     }
 
     public static boolean less(Comparable e1, Comparable e2) {
-        return e1.compareTo(e2) < 0;
+        return e1.compareTo(e2) <= 0;
     }
 
     public static boolean greater(Comparable e1, Comparable e2) {
-        return e1.compareTo(e2) > 0;
+        return e1.compareTo(e2) >= 0;
     }
 
     /**
@@ -52,15 +54,15 @@ public class SortUtils {
      */
     public static boolean isSorted(Comparable<?>[] arr, boolean order) {
         for (int i = 1; i < arr.length; i++) {
-            if (order){
+            if (order) {
                 if (!less(arr[i - 1], arr[i])) {
-                    if (!arr[i-1].equals(arr[i])){
+                    if (!arr[i - 1].equals(arr[i])) {
                         return false;
                     }
                 }
-            }else {
+            } else {
                 if (!greater(arr[i - 1], arr[i])) {
-                    if (!arr[i-1].equals(arr[i])){
+                    if (!arr[i - 1].equals(arr[i])) {
                         return false;
                     }
                 }
@@ -69,40 +71,40 @@ public class SortUtils {
         return true;
     }
 
-    public static void test(String name, Sortable sortable, Comparable<?>[] arr){
+    public static void test(String name, Sortable sortable, Comparable<?>[] arr) {
         long time = System.nanoTime();
         sortable.sort(arr);
-        long consumes = System.nanoTime()-time;
-        assert isSorted(arr,true);
+        long consumes = System.nanoTime() - time;
+        assert isSorted(arr, true);
         double v = consumes / 100_0000000.00;
 
-        System.out.println(name+"测试完成，耗时："+ v +"s,");
+        System.out.println(name + "测试完成，耗时：" + v + "s,");
     }
 
-    public static Integer[] copyIntArr(Integer[] arr){
+    public static Integer[] copyIntArr(Integer[] arr) {
         Integer[] ret = new Integer[arr.length];
-        System.arraycopy(arr,0,ret,0,ret.length);
+        System.arraycopy(arr, 0, ret, 0, ret.length);
         return ret;
     }
 
-    public static Comparable<?>[] copyArr(Comparable<?>[] arr){
+    public static Comparable<?>[] copyArr(Comparable<?>[] arr) {
         Comparable<?>[] ret = new Comparable<?>[arr.length];
-        System.arraycopy(arr,0,ret,0,ret.length);
+        System.arraycopy(arr, 0, ret, 0, ret.length);
         return ret;
     }
 
-    public static Comparable<?> min(Comparable<?> e1,Comparable<?> e2){
-        if (less(e1,e2)){
+    public static Comparable<?> min(Comparable<?> e1, Comparable<?> e2) {
+        if (less(e1, e2)) {
             return e1;
-        }else {
+        } else {
             return e2;
         }
     }
 
-    public static Integer min(Integer e1,Integer e2){
-        if (less(e1,e2)){
+    public static Integer min(Integer e1, Integer e2) {
+        if (less(e1, e2)) {
             return e1;
-        }else {
+        } else {
             return e2;
         }
     }
