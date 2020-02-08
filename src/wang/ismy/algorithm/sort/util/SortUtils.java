@@ -1,5 +1,7 @@
 package wang.ismy.algorithm.sort.util;
 
+import wang.ismy.algorithm.sort.Sortable;
+
 import java.util.Random;
 import java.util.function.Consumer;
 
@@ -67,11 +69,17 @@ public class SortUtils {
         return true;
     }
 
-    public static void test(String name, Consumer<Comparable<?>[]> sortMethod,Comparable<?>[] arr){
+    public static void test(String name, Sortable sortable, Comparable<?>[] arr){
         long time = System.nanoTime();
-        sortMethod.accept(arr);
+        sortable.sort(arr);
         long consumes = System.nanoTime()-time;
         assert isSorted(arr,true);
         System.out.println(name+"测试完成，耗时："+consumes/100_0000000.00+"s,");
+    }
+
+    public static Integer[] copyIntArr(Integer[] arr){
+        Integer[] ret = new Integer[arr.length];
+        System.arraycopy(arr,0,ret,0,ret.length);
+        return ret;
     }
 }

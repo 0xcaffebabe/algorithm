@@ -6,9 +6,10 @@ import static wang.ismy.algorithm.sort.util.SortUtils.*;
  * @author MY
  * @date 2020/2/7 20:10
  */
-public class SelectionSort {
+public class SelectionSort implements Sortable {
 
-    public static void sort(Comparable<?>[] arr) {
+    @Override
+    public void sort(Comparable<?>[] arr) {
         for (int i = 0; i < arr.length; i++) {
             // 寻找[i,n)里的最小值
             int min = i;
@@ -23,6 +24,6 @@ public class SelectionSort {
 
     public static void main(String[] args) {
         Integer[] arr = genRndIntArr(100000, 10,50);
-        test("selection sort",SelectionSort::sort,arr);
+        test("selection sort",new SelectionSort(),arr);
     }
 }
