@@ -74,7 +74,9 @@ public class SortUtils {
         sortable.sort(arr);
         long consumes = System.nanoTime()-time;
         assert isSorted(arr,true);
-        System.out.println(name+"测试完成，耗时："+consumes/100_0000000.00+"s,");
+        double v = consumes / 100_0000000.00;
+
+        System.out.println(name+"测试完成，耗时："+ v +"s,");
     }
 
     public static Integer[] copyIntArr(Integer[] arr){
@@ -82,4 +84,28 @@ public class SortUtils {
         System.arraycopy(arr,0,ret,0,ret.length);
         return ret;
     }
+
+    public static Comparable<?>[] copyArr(Comparable<?>[] arr){
+        Comparable<?>[] ret = new Comparable<?>[arr.length];
+        System.arraycopy(arr,0,ret,0,ret.length);
+        return ret;
+    }
+
+    public static Comparable<?> min(Comparable<?> e1,Comparable<?> e2){
+        if (less(e1,e2)){
+            return e1;
+        }else {
+            return e2;
+        }
+    }
+
+    public static Integer min(Integer e1,Integer e2){
+        if (less(e1,e2)){
+            return e1;
+        }else {
+            return e2;
+        }
+    }
+
+
 }

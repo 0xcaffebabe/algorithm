@@ -1,4 +1,6 @@
-package wang.ismy.algorithm.sort;
+package wang.ismy.algorithm.sort.basic;
+
+import wang.ismy.algorithm.sort.Sortable;
 
 import static wang.ismy.algorithm.sort.util.SortUtils.*;
 

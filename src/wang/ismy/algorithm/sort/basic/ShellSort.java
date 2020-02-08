@@ -1,5 +1,5 @@
-package wang.ismy.algorithm.sort;
-import java.time.temporal.ValueRange;
+package wang.ismy.algorithm.sort.basic;
+import wang.ismy.algorithm.sort.Sortable;
 
 import static wang.ismy.algorithm.sort.util.SortUtils.*;
 /**
