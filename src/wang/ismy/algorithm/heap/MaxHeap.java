@@ -20,6 +20,18 @@ public class MaxHeap<T extends Comparable<?>> {
         this.capacity = capacity;
     }
 
+    public MaxHeap(Comparable<?>[] a) {
+        data = new Object[a.length + 1];
+        capacity = a.length;
+        for (int i = 0; i < a.length; i++) {
+            data[i + 1] = a[i];
+        }
+        count = a.length;
+        for (int i = count / 2; i >= 1; i--) {
+            shiftDown(i);
+        }
+    }
+
     public void insert(T e) {
         assert count + 1 <= capacity;
         data[++count] = e;
@@ -37,18 +49,18 @@ public class MaxHeap<T extends Comparable<?>> {
 
     private void shiftDown(int k) {
         while (2 * k <= count) {
-            int j =2*k;
+            int j = 2 * k;
             // 确定要跟左子树比较还是跟右子树
-            if (j+1<=count && greater(data,j+1,j)){
+            if (j + 1 <= count && greater(data, j + 1, j)) {
                 // 右子树
                 j++;
             }
             // 如果自己大于要比较的子树，则停止
-            if (greaterThan(data,k,j)){
+            if (greaterThan(data, k, j)) {
                 break;
             }
-            swap(data,k,j);
-            k=j;
+            swap(data, k, j);
+            k = j;
         }
     }
 
