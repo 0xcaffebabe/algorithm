@@ -14,6 +14,7 @@ import static wang.ismy.algorithm.search.util.SearchUtils.*;
 public class BinarySearch implements Searchable{
 
     public int search(Comparable<?>[] a, Comparable<?> target) {
+        new QuickSort().sort(a);
         int l = 0, r = a.length - 1;
         while (l <= r) {
             int mid = l + (r - l) / 2;
