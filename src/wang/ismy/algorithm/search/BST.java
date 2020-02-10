@@ -2,6 +2,10 @@ package wang.ismy.algorithm.search;
 
 import jdk.jfr.DataAmount;
 
+import java.util.UUID;
+import java.util.function.BiConsumer;
+import java.util.function.Consumer;
+
 import static wang.ismy.algorithm.sort.util.SortUtils.*;
 
 /**
@@ -105,6 +109,53 @@ public class BST<K extends Comparable, V> {
 
     public boolean isEmpty() {
         return count == 0;
+    }
+
+    public void preOrder(BiConsumer<K,V> consumer){
+        preOrder(root,consumer);
+    }
+
+    public void inOrder(BiConsumer<K,V> consumer){
+        inOrder(root,consumer);
+    }
+
+    public void postOrder(BiConsumer<K,V> consumer){
+        inOrder(root,consumer);
+    }
+
+    private void preOrder(Node root,BiConsumer<K,V> consumer){
+        if (root != null){
+            consumer.accept(root.key,root.value);
+            preOrder(root.left,consumer);
+            preOrder(root.right,consumer);
+        }
+    }
+
+    private void inOrder(Node root, BiConsumer<K,V> consumer) {
+        if (root != null){
+            preOrder(root.left,consumer);
+            consumer.accept(root.key,root.value);
+            preOrder(root.right,consumer);
+        }
+    }
+
+    private void postOrder(Node root, BiConsumer<K,V> consumer) {
+        if (root != null){
+            preOrder(root.left,consumer);
+            preOrder(root.right,consumer);
+            consumer.accept(root.key,root.value);
+        }
+    }
+
+    public static void main(String[] args) {
+        BST<Integer,String> bst = new BST<>();
+        for (int i = 0; i < 1000; i++) {
+            bst.insert(i, UUID.randomUUID().toString());
+        }
+        // 中序遍历 == 排序
+        bst.inOrder((k,v)->{
+            System.out.println(k+":"+v);
+        });
     }
 
 }
